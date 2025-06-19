@@ -9,7 +9,7 @@ function ProductsPage() {
     const [arr,setArr]=useState([]);
     useEffect(()=>{
         const getproducts=async()=>{
-            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`,{withCredentials: true});
             setArr(res.data);
             setProds(res.data);
         }
