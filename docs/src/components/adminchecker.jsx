@@ -7,7 +7,7 @@ function Adminchecker({children}) {
     useEffect(()=>{
 
         const checker=async()=>{
-            const ress= await axios.get(`${import.meta.env.VITE_API_URL}`+'/api/user/admincheck');
+            const ress= await axios.get(`${import.meta.env.VITE_API_URL}`+'/api/user/admincheck',{withCredentials: true});
             
             if (ress.data.message==="Is Admin"){
                 setisadmin(true);
