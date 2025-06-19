@@ -7,7 +7,7 @@ function Nav() {
     const [token,settoken]=useState(false);
     useEffect(()=>{
         const authchecker=async()=>{
-            const res=await axios.post('/api/user/auth',{headers:{'Content-Type':'application/json'}})
+            const res=await axios.post(`${process.env.REACT_APP_API_URL}`+'/api/user/auth',{headers:{'Content-Type':'application/json'}})
 
             if(res.data.message==="User Authenticated"){
                 settoken(true);
@@ -19,7 +19,7 @@ function Nav() {
         console.log(token);
     },[token]);
     const handleClick=async()=>{
-        const res=await axios.post('/api/user/logout');
+        const res=await axios.post(`${process.env.REACT_APP_API_URL}`+'/api/user/logout');
         if (res.data.message==="User Logged Out"){
             settoken(false);
         }

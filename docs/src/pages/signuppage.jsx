@@ -20,7 +20,7 @@ function Signin() {
           return alert("password must consist of 6 to 15 characters only");
         }
         const formData = {username,password,email};
-        const res=await axios.post('api/user/signup',formData,{
+        const res=await axios.post(`${process.env.REACT_APP_API_URL}`+'api/user/signup',formData,{
           headers:{
             'Content-Type':'application/json'
           }
