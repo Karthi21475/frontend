@@ -13,7 +13,7 @@ function Login() {
                   const username = e.target.username.value;
                 const password =e.target.password.value;
                 const formData = {username,password};
-                const res=await axios.post(`${process.env.REACT_APP_API_URL}`+'api/user/login',formData,{
+                const res=await axios.post(`${import.meta.env.REACT_APP_API_URL}`+'/api/user/login',formData,{
                   headers:{
                     'Content-Type':'application/json'
                   }

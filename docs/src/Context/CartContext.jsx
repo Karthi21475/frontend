@@ -8,14 +8,14 @@ export const CartProvider=({children})=>{
     const [cartItems,setarr]=useState([]);
 
     const getCartItems=async()=>{
-        const res=await axios.get(`${process.env.REACT_APP_API_URL}`+'/api/cart');
+        const res=await axios.get(`${import.meta.env.REACT_APP_API_URL}`+'/api/cart');
         setarr(res.data);
         console.log("fetched it brooo")
     }
 
     const AddcartItem=async(productDetails)=>{
         console.log(productDetails)
-        const res=await axios.post(`${process.env.REACT_APP_API_URL}`+'/api/cart',productDetails,{headers:{'Content-Type':'application/json'}});
+        const res=await axios.post(`${import.meta.env.REACT_APP_API_URL}`+'/api/cart',productDetails,{headers:{'Content-Type':'application/json'}});
         getCartItems();
         
         if (res.data.message==="Item Added to Cart"){
@@ -26,7 +26,7 @@ export const CartProvider=({children})=>{
         
         const Data={quantity}
         
-        const res=await axios.put(`${process.env.REACT_APP_API_URL}`+`/api/cart/${id}`,Data,{headers:{'Content-Type':'application/json'}});
+        const res=await axios.put(`${import.meta.env.REACT_APP_API_URL}`+`/api/cart/${id}`,Data,{headers:{'Content-Type':'application/json'}});
         getCartItems();
         
         if (res.data.message==="Item Updated in Cart"){
@@ -34,7 +34,7 @@ export const CartProvider=({children})=>{
         }
     }
     const DeletecartItem=async(id)=>{
-        await axios.delete(`${process.env.REACT_APP_API_URL}/api/cart/${id}`);
+        await axios.delete(`${import.meta.env.REACT_APP_API_URL}/api/cart/${id}`);
         getCartItems();
     }
 
