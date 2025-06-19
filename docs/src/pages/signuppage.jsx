@@ -23,7 +23,8 @@ function Signin() {
         const res=await axios.post(`${import.meta.env.VITE_API_URL}`+'/api/user/signup',formData,{
           headers:{
             'Content-Type':'application/json'
-          }
+          },
+          withCredentials: true
         });
         console.log(res);
         if(res.data.message==="User Created"){

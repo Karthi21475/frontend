@@ -16,7 +16,8 @@ function Login() {
                 const res=await axios.post(`${import.meta.env.VITE_API_URL}`+'/api/user/login',formData,{
                   headers:{
                     'Content-Type':'application/json'
-                  }
+                  },
+                  withCredentials: true
                 })
                 if (res.data.message==="Login Success"){
                   console.log(res.message);
