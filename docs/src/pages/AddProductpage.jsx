@@ -10,8 +10,8 @@ function AddProductpage() {
                 const productname=e.target.productName.value;
                 const productid=e.target.productId.value;
                 const price=e.target.price.value;
-                const imageUrl=e.target.ImageUrl.value;
-                const formData ={productid,productname,price,imageUrl};
+                const image=e.target.ImageUrl.value;
+                const formData ={productid,productname,price,image};
                 const res=await axios.post(`${import.meta.env.VITE_API_URL}`+'/api/products',formData,{headers:{'Content-Type':'application/json'},withCredentials: true})
                 if (res.data.message!=="Product Added") return alert(res.data.message)
             }}>
