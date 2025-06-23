@@ -18,6 +18,9 @@ export const CartProvider=({children})=>{
     
     const AddcartItem=async(productDetails)=>{
         const res=await axios.post(`${import.meta.env.VITE_API_URL}`+'/api/cart',productDetails,{headers:{'Content-Type':'application/json'},withCredentials: true});
+        if (res.data.message=="No token, access denied!"){
+            window.location="/login"
+        }
         await getCartItems();
         
         if (res.data.message==="Item Added to Cart"){
@@ -28,6 +31,9 @@ export const CartProvider=({children})=>{
         const Data={quantity}
         
         const res=await axios.put(`${import.meta.env.VITE_API_URL}`+`/api/cart/${id}`,Data,{headers:{'Content-Type':'application/json'},withCredentials: true});
+        if (res.data.message=="No token, access denied!"){
+            window.location="/login"
+        }
         await getCartItems();
         
         if (res.data.message==="Item Updated in Cart"){
@@ -35,7 +41,10 @@ export const CartProvider=({children})=>{
         }
     }
     const DeletecartItem=async(id)=>{
-        await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/${id}`,{withCredentials: true});
+        const res=await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/${id}`,{withCredentials: true});
+        if (res.data.message=="No token, access denied!"){
+            window.location="/login"
+        }
         await getCartItems();
     }
 

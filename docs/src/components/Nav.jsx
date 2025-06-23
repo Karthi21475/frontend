@@ -8,6 +8,10 @@ function Nav() {
     useEffect(()=>{
         const authchecker=async()=>{
             const res=await axios.get(`${import.meta.env.VITE_API_URL}`+'/api/user/auth',{headers:{'Content-Type':'application/json'},withCredentials: true})
+            
+            if (res.data.message=="No token, access denied!"){
+                window.location="/login";
+            }
 
             if(res.data.message==="User Authenticated"){
                 settoken(true);
