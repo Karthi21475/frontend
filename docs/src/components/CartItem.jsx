@@ -23,8 +23,7 @@ function CartItem({cartDetails}) {
         setitem(cartItems.find(item=>item.productid===productid));
     },[cartItems]);
     return (
-        <>
-            <div className='cartitem-cont'>
+        <>{Loader?<h1>Loading...</h1>:(<div className='cartitem-cont'>
                 <div className='cartitem-details'>
                     <img src={image} />
                     <div>
@@ -37,7 +36,8 @@ function CartItem({cartDetails}) {
                     <span>{item.quantity}</span>
                     <button className="btn1" onClick={()=>handleInc()}>+</button>
                 </div>
-            </div>
+            </div>)}
+            
         </>
     )
 }
