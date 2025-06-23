@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState ,useContext} from 'react'
 import ProductItem from '../components/ProductItem';
 import '../styles/productspage.css'
+import { CartContext } from '../Context/CartContext';
 function ProductsPage() {
 
     const [products,setProds]=useState([]);
