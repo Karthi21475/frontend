@@ -7,22 +7,25 @@ function CartItem({cartDetails}) {
     const [item,setitem]=useState([]);
     const {_id,productid,productname,price,image}=cartDetails;
     const {cartItems,DeletecartItem,UpdatecartItem}=useContext(CartContext);
+    const [Loader,setLoader]=useState(false);
 
-    const handleDec=()=>{
+    const handleDec=async()=>{
+        setLoader(true)
         if (item.quantity===1){
-            DeletecartItem(_id);
+            await DeletecartItem(_id);
         }else{
-            UpdatecartItem(_id,item.quantity-1);
+            await UpdatecartItem(_id,item.quantity-1);
         }
+        setLoader(false)
     }
-    const handleInc=()=>{
-        UpdatecartItem(_id,item.quantity+1)
+    const handleInc=async()=>{
+        setLoader(true)
+        await UpdatecartItem(_id,item.quantity+1)
+        setLoader(false)
     }
 
     useEffect(()=>{
-        console.log("started filter")
         setitem(cartItems.find(item=>item.productid===productid));
-        console.log("ended filter")
     },[cartItems]);
     return (
         <>
@@ -34,11 +37,12 @@ function CartItem({cartDetails}) {
                         <p>₹{price}</p>
                     </div>
                 </div>
+                {Loader?<h1>Loading...</h1>:
                 <div className="quant-wrapper">
                     <button className="btn1" onClick={()=>handleDec()}>-</button>
                     <span>{item.quantity}</span>
                     <button className="btn1" onClick={()=>handleInc()}>+</button>
-                </div>
+                </div>}
             </div>
         </>
     )
