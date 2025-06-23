@@ -1,21 +1,19 @@
 import axios from 'axios';
-import React, { useEffect, useState ,useContext} from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductItem from '../components/ProductItem';
 import '../styles/productspage.css'
-import { CartContext } from '../Context/CartContext';
 function ProductsPage() {
 
     const [products,setProds]=useState([]);
-    const [loader,setLoading]=useState(false);
+    const [Loader,setLoader]=useState(false);
     const [arr,setArr]=useState([]);
-    const {Loader}=useContext(CartContext);
     useEffect(()=>{
         const getproducts=async()=>{
-            setLoading(true)
+            setLoader(true)
             const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`,{withCredentials: true});
             setArr(res.data);
             setProds(res.data);
-            setLoading(false)
+            setLoader(false)
         }
         getproducts();
     },[]);
@@ -27,7 +25,7 @@ function ProductsPage() {
     }
 
     return (
-        <>{(Loader||loader)?<h1>Loading...</h1>:(<><div>
+        <>{Loader?<h1>Loading...</h1>:(<><div>
                 <input type="text" placeholder="Search" name="search" id="search" onChange={handleOnChange}/>
             </div>
             <div className="products-container">

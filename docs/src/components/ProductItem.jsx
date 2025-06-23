@@ -6,10 +6,14 @@ function ProductItem({productDetails}) {
 
     const {productid,productname,price,image}=productDetails;
     const [check,setcheck]=useState(false);
+
+    const [Loader,setLoader]=useState(false);
     const {cartItems,AddcartItem}=useContext(CartContext);
 
     const handleClick=async()=>{
-        AddcartItem(productDetails);
+        setLoader(true)
+        await AddcartItem(productDetails);
+        setLoader(false)
     }
 
     useEffect(()=>{
@@ -22,7 +26,8 @@ function ProductItem({productDetails}) {
             <img src={image}/>
             <h1>{productname}</h1>
             <p>₹{price}</p>
-            {check?<Link className="btn1" to='/cart'>Go To Cart</Link>:<button className="btn1" onClick={()=>handleClick()}>Add</button>}
+            {Loader?<h1>Loading..</h1>:check?<Link className="btn1" to='/cart'>Go To Cart</Link>:<button className="btn1" onClick={()=>handleClick()}>Add</button>}
+            
         </div>
     </>
     )
