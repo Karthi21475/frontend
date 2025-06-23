@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 function CartItem({cartDetails}) {
     const [item,setitem]=useState([]);
     const {_id,productid,productname,price,image}=cartDetails;
-    const {cartItems,Loader,DeletecartItem,UpdatecartItem}=useContext(CartContext);
+    const {cartItems,DeletecartItem,UpdatecartItem}=useContext(CartContext);
 
     const handleDec=()=>{
         if (item.quantity===1){
@@ -23,7 +23,8 @@ function CartItem({cartDetails}) {
         setitem(cartItems.find(item=>item.productid===productid));
     },[cartItems]);
     return (
-        <>{Loader?<h1>Loading...</h1>:(<div className='cartitem-cont'>
+        <>
+            <div className='cartitem-cont'>
                 <div className='cartitem-details'>
                     <img src={image} />
                     <div>
@@ -36,8 +37,7 @@ function CartItem({cartDetails}) {
                     <span>{item.quantity}</span>
                     <button className="btn1" onClick={()=>handleInc()}>+</button>
                 </div>
-            </div>)}
-            
+            </div>
         </>
     )
 }
