@@ -20,7 +20,9 @@ function CartItem({cartDetails}) {
     }
 
     useEffect(()=>{
+        console.log("started filter")
         setitem(cartItems.find(item=>item.productid===productid));
+        console.log("ended filter")
     },[cartItems]);
     return (
         <>
