@@ -1,12 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useContext} from 'react'
 import ProductItem from '../components/ProductItem';
 import '../styles/productspage.css'
+import { CartContext } from '../Context/CartContext';
 function ProductsPage() {
 
     const [products,setProds]=useState([]);
-    const [Loader,setLoader]=useState(false);
+    const [loader,setLoader]=useState(false);
     const [arr,setArr]=useState([]);
+    const {Loader}=useContext(CartContext);
     useEffect(()=>{
         const getproducts=async()=>{
             setLoader(true)
@@ -25,7 +27,7 @@ function ProductsPage() {
     }
 
     return (
-        <>{Loader?<h1>Loading...</h1>:(<><div>
+        <>{Loader||loader?<h1>Loading...</h1>:(<><div>
                 <input type="text" placeholder="Search" name="search" id="search" onChange={handleOnChange}/>
             </div>
             <div className="products-container">
