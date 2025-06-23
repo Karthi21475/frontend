@@ -5,13 +5,15 @@ import '../styles/productspage.css'
 function ProductsPage() {
 
     const [products,setProds]=useState([]);
-    
+    const [Loader,setLoader]=useState(false);
     const [arr,setArr]=useState([]);
     useEffect(()=>{
         const getproducts=async()=>{
+            setLoader(true)
             const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`,{withCredentials: true});
             setArr(res.data);
             setProds(res.data);
+            setLoader(false)
         }
         getproducts();
     },[]);
@@ -23,16 +25,15 @@ function ProductsPage() {
     }
 
     return (
-        <>
-            <div>
+        <>{Loader?<h1>Loading...</h1>:(<><div>
                 <input type="text" placeholder="Search" name="search" id="search" onChange={handleOnChange}/>
             </div>
             <div className="products-container">
                 {products.map(item=>
                     <ProductItem productDetails={item} key={item._id} />
                 )
-                }
-            </div>
+            }
+            </div></>)}
         </>
     )
 }
