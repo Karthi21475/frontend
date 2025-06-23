@@ -7,11 +7,13 @@ export const CartProvider=({children})=>{
     
     const [cartItems,setarr]=useState([]);
     const [Loader,setLoader]=useState(false);
-
+    
     const getCartItems=async()=>{
+        setLoader(true)
         const res=await axios.get(`${import.meta.env.VITE_API_URL}`+'/api/cart',{withCredentials: true});
         setarr(res.data);
         console.log("fetched it brooo")
+        setLoader(false)
     }
     
     const AddcartItem=async(productDetails)=>{
@@ -38,9 +40,7 @@ export const CartProvider=({children})=>{
     }
 
     useEffect(()=>{
-        setLoader(true)
         getCartItems();
-        setLoader(false)
     },[])
 
     return(
