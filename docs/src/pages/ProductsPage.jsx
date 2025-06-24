@@ -22,13 +22,13 @@ function ProductsPage() {
     },[]);
 
     const handleFilter=()=>{
-        console.log("filtering")
-        const res=products.sort((a,b)=>a.price-b.price);
-        // setProds(res)
+        if(sortfilter){
+            products.sort((a,b)=>a.price-b.price);
+        }
+        else{
+            products.sort((a,b)=>b.price-a.price);
+        }
         setSortFilter(!sortfilter)
-        console.log(res)
-        console.log(products)
-        console.log("filtered")
     }
 
     const handleOnChange=(e)=>{
