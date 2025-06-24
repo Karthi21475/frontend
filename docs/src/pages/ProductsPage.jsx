@@ -41,8 +41,10 @@ function ProductsPage() {
             {Loader && <h1>Loading...</h1>}
             <div>
                 <button className="btn1" onClick={()=>{
+                    console.log("filtering")
                     const res=products.sort((a,b)=>a-b);
                     setProds(res)
+                    console.log("filtered")
                 }}>Filter</button>
             </div>
             <div className="products-container">
