@@ -21,6 +21,15 @@ function ProductsPage() {
         getproducts();
     },[]);
 
+    const handleFilter=()=>{
+        console.log("filtering")
+        const res=products.sort((a,b)=>a.price-b.price);
+        // setProds(res)
+        setSortFilter(!sortfilter)
+        console.log(res)
+        console.log(products)
+        console.log("filtered")
+    }
 
     const handleOnChange=(e)=>{
         const value=e.target.value;
@@ -40,15 +49,7 @@ function ProductsPage() {
             </div>
             {Loader && <h1>Loading...</h1>}
             <div>
-                <button className="btn1" onClick={()=>{
-                    console.log("filtering")
-                    const res=products.sort((a,b)=>a.price-b.price);
-                    setProds(res)
-                    setSortFilter(!sortfilter)
-                    console.log(res)
-                    console.log(products)
-                    console.log("filtered")
-                }}>Filter</button>
+                <button className="btn1" onClick={handleFilter}>Filter</button>
             </div>
             <div className="products-container">
                 {products.map(item=>
