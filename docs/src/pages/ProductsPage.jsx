@@ -29,6 +29,8 @@ function ProductsPage() {
             products.sort((a,b)=>b.price-a.price);
         }
         setSortFilter(!sortfilter)
+        console.log(sortfilter)
+        console.log(products)
     }
 
     const handleOnChange=(e)=>{
