@@ -7,6 +7,7 @@ import Nav from '../components/Nav';
 function ProductsPage() {
 
     const [products,setProds]=useState([]);
+    const [sortfilter,setSortFilter]=useState(false);
     const [Loader,setLoader]=useState(false);
     const [arr,setArr]=useState([]);
     useEffect(()=>{
@@ -19,6 +20,11 @@ function ProductsPage() {
         }
         getproducts();
     },[]);
+
+    const handleFilter=()=>{
+        const res=arr.sort((a,b)=>a-b);
+        setProds(res)
+    }
 
     const handleOnChange=(e)=>{
         const value=e.target.value;
@@ -37,6 +43,9 @@ function ProductsPage() {
                 <input type="text" placeholder="Search" name="search" id="search" onChange={handleOnChange}/>
             </div>
             {Loader && <h1>Loading...</h1>}
+            <div>
+                <button className="btn1" onClick={handleFilter} >Filter</button>
+            </div>
             <div className="products-container">
                 {products.map(item=>
                     <ProductItem productDetails={item} key={item._id} />
