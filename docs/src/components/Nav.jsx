@@ -39,9 +39,9 @@ function Nav() {
                 <li><Link to='/products'>Products</Link></li>
             </ul>
             {token?
-            <div className="flex gap-[2rem]">
+            <div className="util-cont">
                 <button className="btn1" onClick={()=>handleClick()}>Logout</button>
-                <Link to='/cart'>Cart</Link >
+                <Link to='/cart' className="btn1">Cart</Link>
             </div>:
             <Link to='/login' className="btn1">Login</Link>}
         </nav>

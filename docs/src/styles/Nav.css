@@ -37,3 +37,7 @@
 .nav-links a:hover::after{
     transform: scaleX(1);
 }
+.util-cont{
+    display:flex;
+    gap:2rem;
+}
