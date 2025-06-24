@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import ProductItem from '../components/ProductItem';
 import '../styles/productspage.css'
-import Nav from '../components/Nav';
 function ProductsPage() {
 
     const [products,setProds]=useState([]);
-    const [sortfilter,setSortFilter]=useState(false);
+    // const [sortfilter,setSortFilter]=useState(false);
     const [Loader,setLoader]=useState(false);
     const [arr,setArr]=useState([]);
     useEffect(()=>{
@@ -41,9 +40,13 @@ function ProductsPage() {
             {Loader && <h1>Loading...</h1>}
             <div>
                 <button className="btn1" onClick={()=>{
-            products.sort((a,b)=>a.price-b.price)}}>Filter inc</button>
+            let res=products.sort((a,b)=>a.price-b.price)
+            setProds(res)
+        }}>Filter inc</button>
                 <button className="btn1" onClick={()=>{
-            products.sort((a,b)=>b.price-a.price)}}>Filter dec</button>
+                    let res=products.sort((a,b)=>b.price-a.price)
+                    setProds(res)
+                    }}>Filter dec</button>
             </div>
             <div className="products-container">
                 {products.map(item=>
