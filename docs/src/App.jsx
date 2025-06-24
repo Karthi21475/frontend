@@ -15,7 +15,7 @@ function App() {
       <Route path='/signup' element={<Signup/>}></Route>
       <Route path='/products' element={<ProductsPage/>}></Route>
       <Route path='/cart' element={<CartPage/>}></Route>
-      <Route path='/add-product' element={<Adminchecker><AddProductpage /></Adminchecker>}></Route>
+      <Route path='/add-product' element={<Adminchecker><AddProductpage/></Adminchecker>}></Route>
       <Route path='*' element={<h1>Not Found</h1>}></Route>
     </Routes>
   );

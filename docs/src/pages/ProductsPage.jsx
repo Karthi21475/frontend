@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ProductItem from '../components/ProductItem';
 import '../styles/productspage.css'
+import Nav from '../components/Nav';
 function ProductsPage() {
 
     const [products,setProds]=useState([]);
@@ -25,7 +26,10 @@ function ProductsPage() {
     }
 
     return (
-        <>{Loader?<h1>Loading...</h1>:(<><div>
+        <>
+            <Nav/>
+            {Loader && <h1>Loading...</h1>}
+            <div>
                 <input type="text" placeholder="Search" name="search" id="search" onChange={handleOnChange}/>
             </div>
             <div className="products-container">
@@ -33,7 +37,7 @@ function ProductsPage() {
                     <ProductItem productDetails={item} key={item._id} />
                 )
             }
-            </div></>)}
+            </div>
         </>
     )
 }

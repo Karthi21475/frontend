@@ -38,7 +38,12 @@ function Nav() {
                 <li><Link to='/about'>About</Link></li>
                 <li><Link to='/products'>Products</Link></li>
             </ul>
-            {token?<button className="btn1" onClick={()=>handleClick()}>Logout</button>:(<Link to='/login' className="btn1">Login</Link>)}
+            {token?
+            <div className="flex gap-[2rem]">
+                <button className="btn1" onClick={()=>handleClick()}>Logout</button>
+                <Link to='/cart'>Cart</Link >
+            </div>:
+            <Link to='/login' className="btn1">Login</Link>}
         </nav>
     </>
     )
