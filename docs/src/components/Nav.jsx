@@ -35,7 +35,6 @@ function Nav() {
             <h1 className="logo">VLN</h1>
             <ul className="nav-links">
                 <li><Link to='/'>Home</Link></li>
-                <li><Link to='/about'>About</Link></li>
                 <li><Link to='/products'>Products</Link></li>
             </ul>
             {token?

@@ -27,11 +27,15 @@ function ProductsPage() {
 
     return (
         <>
-            <Nav/>
-            {Loader && <h1>Loading...</h1>}
-            <div>
+            <div className="nav-container">
+                <h1 className="logo">VLN</h1>
+                <ul className="nav-links">
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/products'>Products</Link></li>
+                </ul>
                 <input type="text" placeholder="Search" name="search" id="search" onChange={handleOnChange}/>
             </div>
+            {Loader && <h1>Loading...</h1>}
             <div className="products-container">
                 {products.map(item=>
                     <ProductItem productDetails={item} key={item._id} />
