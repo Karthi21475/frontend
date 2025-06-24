@@ -7,7 +7,7 @@ import Nav from '../components/Nav';
 function ProductsPage() {
 
     const [products,setProds]=useState([]);
-    // const [sortfilter,setSortFilter]=useState(false);
+    const [sortfilter,setSortFilter]=useState(false);
     const [Loader,setLoader]=useState(false);
     const [arr,setArr]=useState([]);
     useEffect(()=>{
@@ -44,6 +44,9 @@ function ProductsPage() {
                     console.log("filtering")
                     const res=products.sort((a,b)=>a.price-b.price);
                     setProds(res)
+                    setSortFilter(!sortfilter)
+                    console.log(res)
+                    console.log(products)
                     console.log("filtered")
                 }}>Filter</button>
             </div>
