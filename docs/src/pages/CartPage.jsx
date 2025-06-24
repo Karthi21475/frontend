@@ -8,8 +8,8 @@ function CartPage() {
 
     return (
         <>
-        {Loader && <h1>Loading..</h1>}
-        <div className="cart-item-wrapper">
+            {Loader && <h1>Loading..</h1>}
+            <div className="cart-item-wrapper">
                 {cartItems.map(item=><CartItem cartDetails={item} key={item.productid}/>)}
             </div>
             <div className="checkout-section">

@@ -15,7 +15,6 @@ function Adminchecker({children}) {
                 setisadmin(false);
             }
         }
-    
         checker();
     },[]);
 
