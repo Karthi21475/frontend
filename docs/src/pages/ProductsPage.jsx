@@ -42,7 +42,7 @@ function ProductsPage() {
             <div>
                 <button className="btn1" onClick={()=>{
                     console.log("filtering")
-                    const res=products.sort((a,b)=>a-b);
+                    const res=products.sort((a,b)=>a.price-b.price);
                     setProds(res)
                     console.log("filtered")
                 }}>Filter</button>
