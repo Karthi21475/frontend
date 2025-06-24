@@ -17,17 +17,20 @@ export const CartProvider=({children})=>{
     }
     
     const AddcartItem=async(productDetails)=>{
+        setLoader(true)
         const res=await axios.post(`${import.meta.env.VITE_API_URL}`+'/api/cart',productDetails,{headers:{'Content-Type':'application/json'},withCredentials: true});
         if (res.data.message=="No token, access denied!"){
             window.location="/login"
         }
         await getCartItems();
+        setLoader(false)
         
         if (res.data.message==="Item Added to Cart"){
             console.log("added it to the cart");
         }
     }
     const UpdatecartItem=async(id,quantity)=>{
+        setLoader(true)
         const Data={quantity}
         
         const res=await axios.put(`${import.meta.env.VITE_API_URL}`+`/api/cart/${id}`,Data,{headers:{'Content-Type':'application/json'},withCredentials: true});
@@ -35,17 +38,20 @@ export const CartProvider=({children})=>{
             window.location="/login"
         }
         await getCartItems();
+        setLoader(false)
         
         if (res.data.message==="Item Updated in Cart"){
             console.log("Updated item in the cart");
         }
     }
     const DeletecartItem=async(id)=>{
+        setLoader(true)
         const res=await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/${id}`,{withCredentials: true});
         if (res.data.message=="No token, access denied!"){
             window.location="/login"
         }
         await getCartItems();
+        setLoader(false)
     }
 
     useEffect(()=>{
