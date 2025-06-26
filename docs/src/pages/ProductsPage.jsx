@@ -6,7 +6,7 @@ import '../styles/productspage.css'
 function ProductsPage() {
 
     const [products,setProds]=useState([]);
-    // const [sortfilter,setSortFilter]=useState(false);
+    const [sortfilter,setSortFilter]=useState(false);
     const [Loader,setLoader]=useState(false);
     const [arr,setArr]=useState([]);
     useEffect(()=>{
@@ -39,14 +39,16 @@ function ProductsPage() {
             </div>
             {Loader && <h1>Loading...</h1>}
             <div>
+                {sortfilter?
                 <button className="btn1" onClick={()=>{
-            const res=arr.sort((a,b)=>a.price-b.price)
-            setProds(res)
-        }}>Filter inc</button>
+                    products.sort((a,b)=>a.price-b.price)
+                    setSortFilter(!sortfilter)
+                }}>Filter inc</button>:
                 <button className="btn1" onClick={()=>{
-                    const res=arr.sort((a,b)=>b.price-a.price)
-                    setProds(res)
-                    }}>Filter dec</button>
+                    products.sort((a,b)=>b.price-a.price)
+                    setSortFilter(!sortfilter)
+                }}>Filter dec</button>
+                }
             </div>
             <div className="products-container">
                 {products.map(item=>
