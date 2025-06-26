@@ -40,11 +40,11 @@ function ProductsPage() {
             {Loader && <h1>Loading...</h1>}
             <div>
                 <button className="btn1" onClick={()=>{
-            const res=products.sort((a,b)=>a.price-b.price)
+            const res=arr.sort((a,b)=>a.price-b.price)
             setProds(res)
         }}>Filter inc</button>
                 <button className="btn1" onClick={()=>{
-                    const res=products.sort((a,b)=>b.price-a.price)
+                    const res=arr.sort((a,b)=>b.price-a.price)
                     setProds(res)
                     }}>Filter dec</button>
             </div>
