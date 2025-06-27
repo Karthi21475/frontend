@@ -41,14 +41,14 @@ function ProductsPage() {
             <div>
                 {sortfilter?
                     <button className="btn1" onClick={()=>{
-                        arr.sort((a,b)=>a.price-b.price)
-                        setProds(arr)
-                        setSortFilter(!sortfilter)
+                        const res=products.sort((a,b)=>a.price-b.price)
+                        setProds(...res)
+                        // setSortFilter(!sortfilter)
                     }}>Filter inc</button>:
                     <button className="btn1" onClick={()=>{
-                        arr.sort((a,b)=>b.price-a.price)
-                        setProds(arr)
-                        setSortFilter(!sortfilter)
+                        const res=products.sort((a,b)=>b.price-a.price)
+                        setProds(...res)
+                        // setSortFilter(!sortfilter)
                     }}>Filter dec</button>
                 }
             </div>
