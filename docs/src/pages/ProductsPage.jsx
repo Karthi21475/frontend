@@ -40,21 +40,20 @@ function ProductsPage() {
             {Loader && <h1>Loading...</h1>}
             <div>
                 {sortfilter?
-                <button className="btn1" onClick={()=>{
-                    products.sort((a,b)=>a.price-b.price)
-                    setSortFilter(!sortfilter)
-                }}>Filter inc</button>:
-                <button className="btn1" onClick={()=>{
-                    products.sort((a,b)=>b.price-a.price)
-                    setSortFilter(!sortfilter)
-                }}>Filter dec</button>
+                    <button className="btn1" onClick={()=>{
+                        arr.sort((a,b)=>a.price-b.price)
+                        setSortFilter(!sortfilter)
+                    }}>Filter inc</button>:
+                    <button className="btn1" onClick={()=>{
+                        arr.sort((a,b)=>b.price-a.price)
+                        setSortFilter(!sortfilter)
+                    }}>Filter dec</button>
                 }
             </div>
             <div className="products-container">
                 {products.map(item=>
                     <ProductItem productDetails={item} key={item._id} />
-                )
-            }
+                )}
             </div>
         </>
     )

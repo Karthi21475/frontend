@@ -28,7 +28,6 @@ function Signin() {
         });
         console.log(res);
         if(res.data.message==="User Created"){
-          console.log(res.data.message,formData);
           window.location.href='/login';
         }else{
           alert(res.data.message);
