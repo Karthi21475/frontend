@@ -25,6 +25,7 @@ function ProductsPage() {
         const value=e.target.value;
         const result=arr.filter(item=> item.productname.toLowerCase().includes(value.toLowerCase()))
         setProds(result);
+        setSortFilter(true)
     }
 
     return (
