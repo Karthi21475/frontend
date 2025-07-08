@@ -40,7 +40,12 @@ function Login() {
                   <label htmlFor='password'>Password</label>
                   <p onClick={()=>{setshow(!show)}} htmlFor='password' >{!show?'Show':"Hide"}</p>
                 </div>
-                <button className="btn1">Login</button>
+                {loader?
+                <button className="btn1">
+                  Wait For Login To Process...
+                </button>:
+                <button className="btn1">Login</button>}
+                
                 <p>Dont have an account yet?<Link to="/signup" className="navigateLink">Sign up?</Link></p>
               </form>
           </div>
