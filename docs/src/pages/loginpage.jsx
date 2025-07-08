@@ -4,27 +4,31 @@ import { Link } from 'react-router-dom'
 import '../styles/login.css';
 function Login() {
   const [show,setshow]=useState(false);
+  const [loader,setLoader]=useState(false);
     return (
         <>
           <div className="form-container">
-              <form onSubmit={
+              <form onSubmit={()=>{
+                setLoader(true)
                 async(e)=>{
                   e.preventDefault();
                   const username = e.target.username.value;
-                const password =e.target.password.value;
-                const formData = {username,password};
-                const res=await axios.post(`${import.meta.env.VITE_API_URL}`+'/api/user/login',formData,{
-                  headers:{
-                    'Content-Type':'application/json'
-                  },
-                  withCredentials: true
-                })
-                if (res.data.message==="Login Success"){
-                  console.log(res.message);
-                  window.location.href="/";
-                }else{
-                  alert(res.data.message);
+                  const password =e.target.password.value;
+                  const formData = {username,password};
+                  const res=await axios.post(`${import.meta.env.VITE_API_URL}`+'/api/user/login',formData,{
+                    headers:{
+                      'Content-Type':'application/json'
+                    },
+                    withCredentials: true
+                  })
+                  if (res.data.message==="Login Success"){
+                    console.log(res.message);
+                    window.location.href="/";
+                  }else{
+                    alert(res.data.message);
+                  }
                 }
+                setLoader(false)
               }}>
                 <h1>Login</h1>
                 <div className="input-cont">
