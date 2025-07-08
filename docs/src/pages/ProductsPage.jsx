@@ -25,7 +25,6 @@ function ProductsPage() {
         const value=e.target.value;
         const result=arr.filter(item=> item.productname.toLowerCase().includes(value.toLowerCase()))
         setProds(result);
-        setSortFilter(true)
     }
 
     return (
@@ -42,11 +41,13 @@ function ProductsPage() {
             <div>
                 {sortfilter?
                     <button className="btn1" onClick={()=>{
+                        arr.sort((a,b)=>a.price-b.price)
                         const res=products.sort((a,b)=>a.price-b.price)
                         setProds([...res])
                         setSortFilter(!sortfilter)
                     }}>Filter inc</button>:
                     <button className="btn1" onClick={()=>{
+                        arr.sort((a,b)=>b.price-a.price)
                         const res=products.sort((a,b)=>b.price-a.price)
                         setProds([...res])
                         setSortFilter(!sortfilter)
