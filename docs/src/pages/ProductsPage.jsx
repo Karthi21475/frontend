@@ -37,7 +37,6 @@ function ProductsPage() {
                 </ul>
                 <input type="text" placeholder="Search" name="search" id="search" onChange={handleOnChange}/>
             </div>
-            {Loader && <h1>Loading...</h1>}
             <div>
                 {sortfilter?
                     <button className="btn1" onClick={()=>{
@@ -54,6 +53,7 @@ function ProductsPage() {
                     }}>Filter high to low</button>
                 }
             </div>
+            {Loader && <h1>Loading...</h1>}
             <div className="products-container">
                 {products.map(item=>
                     <ProductItem productDetails={item} key={item._id} />

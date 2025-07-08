@@ -9,9 +9,6 @@ function Nav() {
         const authchecker=async()=>{
             const res=await axios.get(`${import.meta.env.VITE_API_URL}`+'/api/user/auth',{headers:{'Content-Type':'application/json'},withCredentials: true})
             
-            if (res.data.message=="No token, access denied!"){
-                window.location="/login";
-            }
 
             if(res.data.message==="User Authenticated"){
                 settoken(true);
@@ -20,7 +17,6 @@ function Nav() {
             }
         }
         authchecker();
-        console.log(token);
     },[token]);
     const handleClick=async()=>{
         const res=await axios.post(`${import.meta.env.VITE_API_URL}`+'/api/user/logout',{},{withCredentials: true});
