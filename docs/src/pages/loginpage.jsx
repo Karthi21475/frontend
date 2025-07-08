@@ -1,16 +1,16 @@
-import React,{ useState } from 'react';
+import React,{ useContext, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import '../styles/login.css';
+import { CartContext } from '../Context/CartContext.jsx';
 function Login() {
   const [show,setshow]=useState(false);
-  const [loader,setLoader]=useState(false);
+  const {Loader}=useContext(CartContext);
     return (
         <>
           <div className="form-container">
               <form onSubmit={
                 async(e)=>{
-                  setLoader(true)
                   e.preventDefault();
                   const username = e.target.username.value;
                   const password =e.target.password.value;
@@ -27,7 +27,6 @@ function Login() {
                   }else{
                     alert(res.data.message);
                   }
-                  setLoader(false)
               }}>
                 <h1>Login</h1>
                 <div className="input-cont">
@@ -39,7 +38,7 @@ function Login() {
                   <label htmlFor='password'>Password</label>
                   <p onClick={()=>{setshow(!show)}} htmlFor='password' >{!show?'Show':"Hide"}</p>
                 </div>
-                {loader?
+                {Loader?
                 <button className="btn1">
                   Wait For Login To Process...
                 </button>:
