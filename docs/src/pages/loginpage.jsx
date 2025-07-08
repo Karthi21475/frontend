@@ -8,9 +8,9 @@ function Login() {
     return (
         <>
           <div className="form-container">
-              <form onSubmit={()=>{
-                setLoader(true)
+              <form onSubmit={
                 async(e)=>{
+                  setLoader(true)
                   e.preventDefault();
                   const username = e.target.username.value;
                   const password =e.target.password.value;
@@ -27,8 +27,7 @@ function Login() {
                   }else{
                     alert(res.data.message);
                   }
-                }
-                setLoader(false)
+                  setLoader(false)
               }}>
                 <h1>Login</h1>
                 <div className="input-cont">
