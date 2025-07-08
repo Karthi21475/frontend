@@ -1,13 +1,13 @@
 .nav-container{
     display:flex;
-    max-height:6rem;
+    height:6rem;
     padding: 2rem;
     background-color:red;
     justify-content: space-around;
     align-items: center;
 }
 .nav-container h1{
-    font-size:4rem;
+    font-size:clamp(2rem,calc(6vh + 1rem),6rem);
     font-weight:300;
     line-height: 1.5;
 }
@@ -40,4 +40,12 @@
 .util-cont{
     display:flex;
     gap:2rem;
+}
+@media (orientation: portrait){
+    .nav-container{
+        height:15vh;
+    }
+    .nav-links{
+        font-size:clamp(1rem,calc(3vh + 1rem),2rem);
+    }
 }
