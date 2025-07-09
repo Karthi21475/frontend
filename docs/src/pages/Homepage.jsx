@@ -12,7 +12,7 @@ function Homepage() {
     const getproducts=async()=>{
             setLoader(true);
             const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`,{withCredentials: true});
-            setProds(res);
+            setProds(res.data);
             setLoader(false);
             
         }
