@@ -5,12 +5,13 @@ import '../styles/login.css';
 import { CartContext } from '../Context/CartContext.jsx';
 function Login() {
   const [show,setshow]=useState(false);
-  const {Loader}=useContext(CartContext);
+  const [Loader,setLoader]=useState(false);
     return (
         <>
           <div className="form-container">
               <form onSubmit={
                 async(e)=>{
+                  setLoader(true)
                   e.preventDefault();
                   const username = e.target.username.value;
                   const password =e.target.password.value;
@@ -21,6 +22,7 @@ function Login() {
                     },
                     withCredentials: true
                   })
+                  setLoader(false)
                   if (res.data.message==="Login Success"){
                     console.log(res.message);
                     window.location.href="/";
