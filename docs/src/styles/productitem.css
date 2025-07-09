@@ -2,9 +2,8 @@
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width:250px;
+    width:25%;
     background-color: red;
-    flex:1 0 250px;
     padding:1rem;
 }
 .proditem-cont img{
@@ -21,4 +20,9 @@
 .prod-info-wrapper{
     display:flex;
     flex-direction: column;
+}
+@media (orientation:portrait){
+    .proditem-cont{
+        width:50%;
+    }
 }

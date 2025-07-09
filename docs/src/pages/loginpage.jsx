@@ -1,8 +1,7 @@
-import React,{ useContext, useState } from 'react';
+import React,{ useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import '../styles/login.css';
-import { CartContext } from '../Context/CartContext.jsx';
 function Login() {
   const [show,setshow]=useState(false);
   const [Loader,setLoader]=useState(false);
@@ -22,13 +21,13 @@ function Login() {
                     },
                     withCredentials: true
                   })
-                  setLoader(false)
                   if (res.data.message==="Login Success"){
                     console.log(res.message);
                     window.location.href="/";
                   }else{
                     alert(res.data.message);
                   }
+                  setLoader(false)
               }}>
                 <h1>Login</h1>
                 <div className="input-cont">
