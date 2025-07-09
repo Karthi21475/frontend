@@ -14,10 +14,7 @@
     font-size:clamp(0.875rem, 1vw, 1rem);
     font-weight:900;
     line-height: 1.5;
-    /* text-wrap: nowrap; */
     white-space: nowrap;
     overflow:hidden;
     text-overflow: ellipsis;
-    max-height:60px;
-    min-height: 60px;
 }
