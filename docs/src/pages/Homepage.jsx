@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Nav from '../components/Nav.jsx';
 import Header from '../components/Header.jsx';
+import ProductItem from '../components/ProductItem.jsx';
 import axios from 'axios';
 import '../styles/Homepage.css'
 function Homepage() {
