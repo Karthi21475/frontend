@@ -9,7 +9,7 @@
 .proditem-cont img{
     object-fit: contain;
 }
-.proditem-cont h1{
+.text-overflow-cont{
     font-size:clamp(1rem,calc(3vh + 1rem),2rem);
     font-weight:300;
     line-height: 1.5;
