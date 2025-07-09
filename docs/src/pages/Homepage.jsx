@@ -25,7 +25,7 @@ function Homepage() {
         <Nav/>
         <Header/>
         <div className="slide-wrapper">
-          {prods.map(item=><ProductItem productDetails={item} key={item._id} />)}
+          {prods.slice(0,8).map(item=><ProductItem productDetails={item} key={item._id} />)}
         </div>
     </>
   )
