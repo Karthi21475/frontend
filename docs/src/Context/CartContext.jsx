@@ -13,6 +13,9 @@ export const CartProvider=({children})=>{
         const res=await axios.get(`${import.meta.env.VITE_API_URL}`+'/api/cart',{withCredentials: true});
         setarr(res.data);
         console.log("fetched it brooo")
+        if (res.data.message=="No token, access denied!"||res.data.message=="Invalid token!"){
+            return;
+        }
         setLoader(false)
     }
     
