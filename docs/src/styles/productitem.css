@@ -1,6 +1,7 @@
 .proditem-cont{
     display:flex;
     flex-direction: column;
+    justify-content: space-around;
     min-width:250px;
     background-color: red;
     flex:1 0 250px;
