@@ -34,13 +34,12 @@
     bottom:-2px;
     left:0;
     transform: scaleX(0);
-    transform-origin: right;
+    transform-origin: left;
     pointer-events: none;
     transition: all 0.5s;
 }
 .nav-links a:hover::after{
     transform: scaleX(1);
-    transform-origin: left;
 }
 .util-cont{
     display:flex;

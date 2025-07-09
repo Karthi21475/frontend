@@ -29,12 +29,14 @@ function ProductsPage() {
 
     return (
         <>
-            <div className="nav-container">
-                <h1 className="logo">VLN</h1>
-                <ul className="nav-links">
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/products'>Products</Link></li>
-                </ul>
+            <div className="nav-cont flex-col">
+                <div className="d-flex">
+                    <h1 className="logo">VLN</h1>
+                    <ul className="nav-links">
+                        <li><Link to='/'>Home</Link></li>
+                        <li><Link to='/products'>Products</Link></li>
+                    </ul>
+                </div>
                 <input type="text" placeholder="Search" name="search" id="search" onChange={handleOnChange}/>
             </div>
             <div>
