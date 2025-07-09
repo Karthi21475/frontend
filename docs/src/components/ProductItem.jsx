@@ -17,7 +17,6 @@ function ProductItem({productDetails}) {
     }
 
     useEffect(()=>{
-        console.log(cartItems);
         setcheck(cartItems.find(item=>item.productid===productid));
     },[cartItems,productid]);
 
