@@ -18,6 +18,7 @@ function ProductItem({productDetails}) {
 
     useEffect(()=>{
         setcheck(cartItems.find(item=>item.productid===productid));
+        console.log(cartItems);
     },[cartItems,productid]);
 
     return (
