@@ -18,3 +18,7 @@
     overflow:hidden;
     text-overflow: ellipsis;
 }
+.prod-info-wrapper{
+    display:flex;
+    flex-direction: column;
+}
