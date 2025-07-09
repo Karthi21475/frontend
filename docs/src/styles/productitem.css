@@ -10,15 +10,12 @@
 .proditem-cont img{
     object-fit: contain;
 }
-.text-overflow-cont{
-    width:100%;
-}
-.text-overflow-cont h1{
+h1{
     font-size:clamp(0.875rem, 1vw, 1rem);
     font-weight:900;
     line-height: 1.5;
     overflow:hidden;
     text-overflow: ellipsis;
-    max-height:60px;
-    min-height: 60px;
+    max-height:55px;
+    min-height: 55px;
 }
