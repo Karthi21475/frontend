@@ -14,7 +14,7 @@ export const CartProvider=({children})=>{
         setarr(res.data);
         console.log("fetched it brooo")
         if (res.data.message=="No token, access denied!"||res.data.message=="Invalid token!"){
-            return;
+            setarr([])
         }
         setLoader(false)
     }
