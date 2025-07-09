@@ -17,3 +17,8 @@
     height:2.5rem;
     border-radius:50px;
 }
+@media (orientation: portrait){
+    .header-section{
+        height:calc(50vh - 6rem);
+    }
+}
