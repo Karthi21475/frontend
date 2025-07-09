@@ -24,9 +24,11 @@ function ProductItem({productDetails}) {
     <>
         <div className="proditem-cont">
             <img src={image}/>
-            <h1>{productname}</h1>
-            <p>₹{price}</p>
-            {Loader?<h1>Loading..</h1>:check?<Link className="btn1" to='/cart'>Go To Cart</Link>:<button className="btn1" onClick={()=>handleClick()}>Add</button>}
+            <div className="d-flex flex-col">
+                <h1>{productname}</h1>
+                <p>₹{price}</p>
+                {Loader?<h1>Loading..</h1>:check?<Link className="btn1" to='/cart'>Go To Cart</Link>:<button className="btn1" onClick={()=>handleClick()}>Add</button>}
+            </div>
         </div>
     </>
     )
