@@ -10,5 +10,9 @@
     object-fit: contain;
 }
 .proditem-cont h1{
-    font-size:clamp(0.875rem, 1vw, 1rem);
+    font-size:clamp(1rem,calc(3vh + 1rem),2rem);
+    font-weight:300;
+    line-height: 1.5;
+    width:100%;
+    max-height:30px;
 }
