@@ -10,13 +10,13 @@ function CartItem({cartDetails}) {
 
     const handleDec=async()=>{
         if (item.quantity===1){
-            await DeletecartItem(_id);
+            await DeletecartItem(_id,productid);
         }else{
-            await UpdatecartItem(_id,item.quantity-1);
+            await UpdatecartItem(_id,item.quantity-1,productid);
         }
     }
     const handleInc=async()=>{
-        await UpdatecartItem(_id,item.quantity+1)
+        await UpdatecartItem(_id,item.quantity+1,productid)
     }
 
     useEffect(()=>{

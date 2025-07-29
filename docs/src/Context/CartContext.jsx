@@ -32,9 +32,9 @@ export const CartProvider=({children})=>{
             console.log("added it to the cart");
         }
     }
-    const UpdatecartItem=async(id,quantity)=>{
+    const UpdatecartItem=async(id,quantity,productid)=>{
         setLoader(true)
-        const Data={quantity}
+        const Data={quantity,productid}
         
         const res=await axios.put(`${import.meta.env.VITE_API_URL}`+`/api/cart/${id}`,Data,{headers:{'Content-Type':'application/json'},withCredentials: true});
         if (res.data.message=="No token, access denied!"||res.data.message=="Invalid token!"){
@@ -47,9 +47,10 @@ export const CartProvider=({children})=>{
             console.log("Updated item in the cart");
         }
     }
-    const DeletecartItem=async(id)=>{
+    const DeletecartItem=async(id,productid)=>{
         setLoader(true)
-        const res=await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/${id}`,{withCredentials: true});
+        const Data={productid}
+        const res=await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/${id}`,Data,{withCredentials: true});
         if (res.data.message=="No token, access denied!"||res.data.message=="Invalid token!"){
             window.location="/login"
         }

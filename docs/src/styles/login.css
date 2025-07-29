@@ -6,8 +6,6 @@
     border:solid 2px white;
     border-radius: 10px;
     align-items: center;
-    /* width:50%;
-    height:75vh; */
 }
 .form-container{
     min-height:100vh;
@@ -48,9 +46,8 @@
 input ~ label {
     position:absolute;
     left:0;
-    bottom:0;
     pointer-events: none;
-    font-size: clamp(1rem, 0.7vw + 0.25rem, 1.25rem);
+    /* font-size: clamp(1rem, 0.7vw + 0.25rem, 1.25rem); */
     opacity:1;
     transition: all 0.2s ease-in-out;
 }
@@ -58,6 +55,7 @@ input:not(:placeholder-shown) ~label{
     opacity:0;
 }
 input ~ p{
+    font-size: clamp(1rem, 0.7vw + 0.25rem, 1.25rem);
     position:absolute;
     right:0;
     bottom:0;
@@ -68,8 +66,14 @@ input ~ p{
 }
 @media (orientation: portrait){
     .form-container form{
+        /* font-size: clamp(1rem, 0.7vw + 0.25rem, 1.25rem); */
+        font-size: (2rem, 5vw, 4rem);
         width:85%;
         height:50vh;
         justify-content: space-around;
+    }
+    .form-container form .input-cont{
+        /* font-size: clamp(1rem, 0.7vw + 0.25rem, 1.25rem); */
+        font-size: (2rem, 5vw, 4rem) !important;
     }
 }
