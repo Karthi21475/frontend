@@ -58,7 +58,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #242424;
+  background-color: #24242475;
   z-index: 998;
 }
 .loader-cont span,
