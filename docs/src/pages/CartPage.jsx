@@ -11,18 +11,15 @@ function CartPage() {
     return (
         <>
             <Nav/>
-            {Loader ?
+            {Loader &&
                 <div className='loader-cont'>
                     <ClipLoader/>
                 </div>
-                    :
-                    <>
+            }
             <div className="cart-item-wrapper">
                 <h2>Order Details</h2>
                 {cartItems.map(item=><CartItem cartDetails={item} key={item.productid}/>)}
             </div>
-                    </>
-            }
             <div className="checkout-section">
                 <div>
                     <h2>Total:₹{cartItems.reduce((acc,item)=>acc+item.quantity*item.price,0)}</h2>
