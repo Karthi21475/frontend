@@ -3,12 +3,12 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 import '../styles/login.css';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 function Login() {
   const [show,setshow]=useState(false);
   const [Loader,setLoader]=useState(false);
-  const navigate=useNavigate();
+  // const navigate=useNavigate();
     return (
         <>
           <div className="form-container">
@@ -26,7 +26,7 @@ function Login() {
                     withCredentials: true
                   })
                   if (res.data.message==="Login Success"){
-                    navigate("/");
+                    window.location.href="/";
                   }else{
                     toast.error(res.data.message);
                   }
