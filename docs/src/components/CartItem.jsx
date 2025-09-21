@@ -39,17 +39,15 @@ function CartItem({cartDetails}) {
                     </div>
                 </div>
                 <div className="quant-wrapper">
-                    {loader?
-                    <button className='btn1'>
-                        <ClipLoader/>
-                    </button>
-                    :
                     <>
                         <button className="btn1" onClick={()=>handleDec()}>-</button>
-                        <span>{item.quantity}</span>
+                        <span>{
+                        loader?
+                        <ClipLoader/>
+                        :item.quantity
+                        }</span>
                         <button className="btn1" onClick={()=>handleInc()}>+</button>
                     </>
-                    }
                 </div>
             </div>
         </>
