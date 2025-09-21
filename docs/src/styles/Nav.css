@@ -2,7 +2,7 @@
     display:flex;
     height:6rem;
     padding: 2rem;
-    background-color:red;
+    background-color: red;
     justify-content: space-around;
     align-items: center;
     position: sticky;
@@ -45,6 +45,8 @@
     display:flex;
     gap:2rem;
 }
+
+
 @media (orientation: portrait){
     .nav-container{
         height:15vh;

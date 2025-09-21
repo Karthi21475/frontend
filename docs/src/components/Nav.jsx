@@ -9,7 +9,6 @@ function Nav() {
         const authchecker=async()=>{
             const res=await axios.get(`${import.meta.env.VITE_API_URL}`+'/api/user/auth',{headers:{'Content-Type':'application/json'},withCredentials: true})
             
-
             if(res.data.message==="User Authenticated"){
                 settoken(true);
             }else{
@@ -32,13 +31,13 @@ function Nav() {
             <ul className="nav-links">
                 <li><Link to='/'>Home</Link></li>
                 <li><Link to='/products'>Products</Link></li>
+                <li><Link to='/cart'>Cart</Link></li>
             </ul>
             {token?
-            <div className="util-cont">
-                <button className="btn1" onClick={()=>handleClick()}>Logout</button>
-                <Link to='/cart' className="btn1">Cart</Link>
-            </div>:
-            <Link to='/login' className="btn1">Login</Link>}
+            <button className="btn1" onClick={()=>handleClick()}>Logout</button>
+            :
+            <Link to='/login' className="btn1">Login</Link>
+            }
         </nav>
     </>
     )

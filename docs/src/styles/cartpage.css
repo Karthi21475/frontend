@@ -13,4 +13,9 @@
     padding:2rem;
     position: fixed;
     bottom:0;
+    background-color: black;
+}
+.checkout-section div{
+    display: flex;
+    justify-content: space-between;
 }

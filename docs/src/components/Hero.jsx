@@ -1,11 +1,13 @@
 import React from 'react'
 import '../styles/header.css'
-function Header() {
+import { useNavigate } from 'react-router-dom'
+function Hero() {
+    const navigate=useNavigate();
     return (
         <>
             <div className='header-section'>
                 <div className="header-cont">
-                    <button>Shop Now</button>
+                    <button onClick={()=>{navigate('/products')}}>Shop Now</button>
                     <h1>VLN PRODUCTS</h1>
                 </div>
             </div>
@@ -13,4 +15,4 @@ function Header() {
     )
 }
 
-export default Header
+export default Hero;

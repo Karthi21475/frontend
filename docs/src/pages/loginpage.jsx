@@ -2,9 +2,13 @@ import React,{ useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import '../styles/login.css';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
 function Login() {
   const [show,setshow]=useState(false);
   const [Loader,setLoader]=useState(false);
+  const navigate=useNavigate();
     return (
         <>
           <div className="form-container">
@@ -22,10 +26,9 @@ function Login() {
                     withCredentials: true
                   })
                   if (res.data.message==="Login Success"){
-                    console.log(res.message);
-                    window.location.href="/";
+                    navigate("/");
                   }else{
-                    alert(res.data.message);
+                    toast.error(res.data.message);
                   }
                   setLoader(false)
               }}>
@@ -39,11 +42,9 @@ function Login() {
                   <label htmlFor='password'>Password</label>
                   <p onClick={()=>{setshow(!show)}} htmlFor='password' >{!show?'Show':"Hide"}</p>
                 </div>
-                {Loader?
-                <button className="btn1">
-                  Wait For Login To Process...
-                </button>:
-                <button className="btn1">Login</button>}
+                
+                <button className="btn1">{Loader?
+                <ClipLoader/>:"Login"}</button>
                 
                 <p>Dont have an account yet?<Link to="/signup" className="navigateLink">Sign up?</Link></p>
               </form>
