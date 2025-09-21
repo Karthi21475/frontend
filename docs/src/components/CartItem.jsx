@@ -6,23 +6,18 @@ import { useEffect } from 'react';
 import { ClipLoader } from 'react-spinners';
 function CartItem({cartDetails}) {
     const [item,setitem]=useState([]);
-    const [loader,setLoader]=useState(false);
     const {_id,productid,productname,price,image}=cartDetails;
     const {cartItems,DeletecartItem,UpdatecartItem}=useContext(CartContext);
 
     const handleDec=async()=>{
-        setLoader(true);
         if (item.quantity===1){
             await DeletecartItem(_id);
         }else{
             await UpdatecartItem(_id,item.quantity-1,productid);
         }
-        setLoader(false);
     }
     const handleInc=async()=>{
-        setLoader(true)
         await UpdatecartItem(_id,item.quantity+1,productid)
-        setLoader(false)
     }
 
     useEffect(()=>{
@@ -41,11 +36,7 @@ function CartItem({cartDetails}) {
                 <div className="quant-wrapper">
                     <>
                         <button className="btn1" onClick={()=>handleDec()}>-</button>
-                        <span>{
-                        loader?
-                        <ClipLoader/>
-                        :item.quantity
-                        }</span>
+                        <span>{item.quantity}</span>
                         <button className="btn1" onClick={()=>handleInc()}>+</button>
                     </>
                 </div>

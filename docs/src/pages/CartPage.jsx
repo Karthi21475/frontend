@@ -11,11 +11,12 @@ function CartPage() {
     return (
         <>
             <Nav/>
-            {Loader &&
+            {Loader ?
                 <div className='loader-cont'>
                     <ClipLoader/>
                 </div>
-            }
+                    :
+                    <>
             <div className="cart-item-wrapper">
                 <h2>Order Details</h2>
                 {cartItems.map(item=><CartItem cartDetails={item} key={item.productid}/>)}
@@ -26,6 +27,8 @@ function CartPage() {
                     <button className="btn1">Checkout</button>
                 </div>
             </div>
+                    </>
+            }
         </>
     )
 }
