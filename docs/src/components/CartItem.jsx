@@ -39,7 +39,11 @@ function CartItem({cartDetails}) {
                     </div>
                 </div>
                 <div className="quant-wrapper">
-                    {loader?<ClipLoader/>:
+                    {loader?
+                    <button className='btn1'>
+                        <ClipLoader/>
+                    </button>
+                    :
                     <>
                         <button className="btn1" onClick={()=>handleDec()}>-</button>
                         <span>{item.quantity}</span>
