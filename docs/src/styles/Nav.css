@@ -9,6 +9,7 @@
     top:0;
     left:0;
     right:0;
+    z-index: 999;
 }
 .nav-container h1{
     font-size:clamp(2rem,calc(6vh + 1rem),6rem);
