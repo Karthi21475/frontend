@@ -1,8 +1,11 @@
 import React from 'react'
 import axios from 'axios';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 function Signin() {
   const [show,setshow]=useState(false);
+  const navigate=useNavigate();
   return (
     <>
       <div className="form-container">
@@ -14,10 +17,10 @@ function Signin() {
         const confirm_password =e.target.confirm_password.value;
         const email =e.target.email.value;
         if (password!==confirm_password){
-          return alert("Password Does Not Match");
+          return toast.error("Password Does Not Match");
         }
         if (password.length>15 || password.length<6){
-          return alert("password must consist of 6 to 15 characters only");
+          return toast.warn("password must consist of 6 to 15 characters only");
         }
         const formData = {username,password,email};
         const res=await axios.post(`${import.meta.env.VITE_API_URL}`+'/api/user/signup',formData,{
@@ -26,11 +29,10 @@ function Signin() {
           },
           withCredentials: true
         });
-        console.log(res);
         if(res.data.message==="User Created"){
-          window.location.href='/login';
+          navigate('/login');
         }else{
-          alert(res.data.message);
+          toast.error(res.data.message);
         }
       }}>
         <h1>Sign Up</h1>
