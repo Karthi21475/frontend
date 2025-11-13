@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 function ProductItem({productDetails}) {
 
-    const {productid,productname,price,image}=productDetails;
+    const {_id,productname,price,image}=productDetails;
     const [check,setcheck]=useState(false);
 
     const [Loader,setLoader]=useState(false);
@@ -18,8 +18,8 @@ function ProductItem({productDetails}) {
     }
 
     useEffect(()=>{
-        setcheck(cartItems.find(item=>item.productid===productid));
-    },[cartItems,productid]);
+        setcheck(cartItems.find(item=>item._id===_id));
+    },[cartItems,_id]);
 
     return (
     <>

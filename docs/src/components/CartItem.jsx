@@ -6,22 +6,22 @@ import { useEffect } from 'react';
 import { ClipLoader } from 'react-spinners';
 function CartItem({cartDetails}) {
     const [item,setitem]=useState([]);
-    const {_id,productid,productname,price,image}=cartDetails;
+    const {_id,productname,price,image}=cartDetails;
     const {cartItems,DeletecartItem,UpdatecartItem}=useContext(CartContext);
 
     const handleDec=async()=>{
         if (item.quantity===1){
             await DeletecartItem(_id);
         }else{
-            await UpdatecartItem(_id,item.quantity-1,productid);
+            await UpdatecartItem(_id,item.quantity-1);
         }
     }
     const handleInc=async()=>{
-        await UpdatecartItem(_id,item.quantity+1,productid)
+        await UpdatecartItem(_id,item.quantity+1)
     }
 
     useEffect(()=>{
-        setitem(cartItems.find(item=>item.productid===productid));
+        setitem(cartItems.find(item=>item._id===_id));
     },[cartItems]);
     return (
         <>

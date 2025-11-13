@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 function Signin() {
   const [show,setshow]=useState(false);
   const navigate=useNavigate();
@@ -50,10 +51,11 @@ function Signin() {
                   <p onClick={()=>{setshow(!show)}} htmlFor='password' >{!show?'Show':"Hide"}</p>
                 </div>
         <div className="input-cont">
-                  <input type={show ? "text":"password"} name="confirm_password" id="confirm_password" placeholder=" " required/>
-                  <label htmlFor='confirm_password'>Password</label>
+                  <input type="password" name="confirm_password" id="confirm_password" placeholder=" " required/>
+                  <label htmlFor='confirm_password'>Confirm Password</label>
                 </div>
         <button type='submit' className="btn1">Sign Up</button>
+        <p>have an account already?<Link to="/login" className="navigateLink">Login?</Link></p>
       </form>
         </div>
     </>

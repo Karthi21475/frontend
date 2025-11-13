@@ -7,12 +7,12 @@ import { CartProvider } from './Context/CartContext.jsx'
 import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <BrowserRouter>
       <CartProvider>
           <ToastContainer/>
           <App />
       </CartProvider>
     </BrowserRouter>
-  </StrictMode>
+  // </StrictMode>
 )

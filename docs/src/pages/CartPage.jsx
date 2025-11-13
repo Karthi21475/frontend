@@ -18,7 +18,7 @@ function CartPage() {
             }
             <div className="cart-item-wrapper">
                 <h2>Order Details</h2>
-                {cartItems.map(item=><CartItem cartDetails={item} key={item.productid}/>)}
+                {cartItems.map(item=><CartItem cartDetails={item} key={item._id}/>)}
             </div>
             <div className="checkout-section">
                 <div>
