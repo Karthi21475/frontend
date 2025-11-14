@@ -12,7 +12,7 @@ function ProductsPage() {
     const [Loader,setLoader]=useState(false);
     const [searchTerm,setSearchTerm]=useState('');
     const location=useLocation();
-    const [pages,setPages]=useState([1]);
+    const [page,setPage]=useState(1);
     const params=new URLSearchParams(location.search);
 
     const getsearchres=async(value,srt,filter)=>{
@@ -40,26 +40,22 @@ function ProductsPage() {
         e.preventDefault();
         getsearchres(searchTerm,true,false);
     }
-    const getproducts=async(page)=>{
-        setLoader(true)
-        const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`,{
-            params:{
-                limit:params.get("limit") || 9,
-                page:page || 1
-            }
-            ,withCredentials: true
-        });
-        setProds(res.data);
-        setLoader(false)
-    }
     useEffect(()=>{
-        getproducts(params.get("page"));
-
-        for(let i=1;i<=Math.ceil(products.length/params.get("limit")+1);i++){
-            setPages(prev=>[...prev,i+1]);
+        const getproducts=async()=>{
+            setLoader(true)
+            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`,{
+                params:{
+                    limit:params.get("limit") || 9,
+                    page:page || 1
+                }
+                ,withCredentials: true
+            });
+            setProds(res.data);
+            setLoader(false)
         }
+        getproducts();
 
-    },[]);
+    },[page]);
 
     
     return (
@@ -99,11 +95,9 @@ function ProductsPage() {
                         products.length===0 && !Loader && <h2>No Products Found</h2>
                     }
                 </div>
-                {
-                    pages.map(page=>
-                        <Link to={`/products/?limit=9&page=${page}`} key={page} onClick={()=>{getproducts(page)}} className='page-link'>{page}</Link>
-                    )
-                }
+                    <button onClick={()=>{page>1?setPage(prev=>prev-1):""}}>{"<"}</button>
+                    {page}
+                    <button onClick={()=>{products.length>=params.get("limit")?setPage(prev=>prev+1):console.log(products.length)}}>{">"}</button>
             </div>
         </>
     )
