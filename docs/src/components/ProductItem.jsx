@@ -9,13 +9,11 @@ function ProductItem({productDetails}) {
     const [check,setCheck]=useState(false);
     const [item,setItem]=useState([]);
 
-    const [Loader,setLoader]=useState(false);
-    const {cartItems,AddcartItem,UpdatecartItem,DeletecartItem}=useContext(CartContext);
+    // const [Loader,setLoader]=useState(false);
+    const {Loader,cartItems,AddcartItem,UpdatecartItem,DeletecartItem}=useContext(CartContext);
 
     const handleClick=async()=>{
-        setLoader(true)
         await AddcartItem(productDetails);
-        setLoader(false)
     }
     const handleDec=async()=>{
         if (item.quantity===1){
