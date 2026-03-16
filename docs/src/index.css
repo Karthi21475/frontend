@@ -59,9 +59,9 @@ body {
   z-index: 998;
 }
 .loader-cont span,
+.loader span,
 .btn1 span{
   border-color: white white transparent!important;
-  height:100%;
 }
 
 box-icon{

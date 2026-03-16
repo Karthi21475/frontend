@@ -44,17 +44,19 @@ function ProductItem({productDetails}) {
             <div className="prod-info-wrapper">
                 <h1>{productname}</h1>
                 <p>₹{price}</p>
-                <div className='flex items-center ms-auto bg-[#1a1a1a] text-white rounded-[10px]'>
+                <div className='flex items-center justify-around bg-[#1a1a1a] text-white rounded-[10px] min-w-full'>
                 {Loader?
-                <ClipLoader/>:
+                    <div className="loader">
+                        <ClipLoader/>
+                    </div>:
                     check?
                         <>
-                            <button className="btn1 flex items-center" onClick={()=>handleDec()}>-</button>
-                            <span>{item.quantity}</span>
-                            <button className="btn1 flex items-center" onClick={()=>handleInc()}>+</button>
+                            <button className="btn1 flex items-center w-full" onClick={()=>handleDec()}>-</button>
+                            <span className='w-full flex justify-center'>{item.quantity}</span>
+                            <button className="btn1 flex items-center w-full" onClick={()=>handleInc()}>+</button>
                         </>
                         :
-                        <button className="btn1" onClick={()=>handleClick()}>Add</button>
+                        <button className="btn1 w-full" onClick={()=>handleClick()}>Add</button>
                 }
                 </div>
             </div>
