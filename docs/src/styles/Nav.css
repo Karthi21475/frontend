@@ -12,7 +12,7 @@
     z-index: 999;
 }
 .nav-container h1{
-    font-size:clamp(2rem,calc(6vh + 1rem),6rem);
+    font-size:clamp(2rem,calc(6vh+1rem),6rem);
     font-weight:300;
     line-height: 1.5;
 }
@@ -46,13 +46,21 @@
     display:flex;
     gap:2rem;
 }
+.nav-links li a{
+    font-size:clamp(1rem,3vh,2rem);
+}
 
 
-@media (orientation: portrait){
+
+@media (max-width:969px){
     .nav-container{
         height:15vh;
     }
+    .nav-container h1{
+        font-size:clamp(2rem,6vh,6rem);
+    }
+    .nav-container .bnt1,
     .nav-links{
-        font-size:clamp(1rem,calc(3vh + 1rem),2rem);
+        font-size:clamp(1rem,3vh,2rem);
     }
 }

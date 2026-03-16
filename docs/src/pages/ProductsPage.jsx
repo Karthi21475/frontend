@@ -6,6 +6,7 @@ import '../styles/productspage.css'
 import Nav from '../components/Nav';
 function ProductsPage({props}) {
     // const navigate=useNavigate();
+    const {Loader,setLoader}=props;
     const [products,setProds]=useState([]);
     const [searchTerm,setSearchTerm]=useState('');
     const params=new URLSearchParams(location.search);
@@ -13,6 +14,7 @@ function ProductsPage({props}) {
     const [prodCnt,setProdCnt]=useState(10);
 
     const getsearchres=async(value,srt,filter)=>{
+        setLoader(true)
         const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/search`,{
             params:{
                 searchTerm:value,
@@ -21,6 +23,7 @@ function ProductsPage({props}) {
             }
         })
         setProds(res.data)
+        setLoader(false)
     }
     const handleReset=()=>{
         setSearchTerm("")
@@ -29,9 +32,6 @@ function ProductsPage({props}) {
     const handleOnChange=async(e)=>{
         const value=e.target.value
         setSearchTerm(value)
-        if(value===""){
-            getsearchres("",true,false);
-        }
     }
     const handleOnSubmit=async(e)=>{
         e.preventDefault();
@@ -39,7 +39,7 @@ function ProductsPage({props}) {
     }
     useEffect(()=>{
         const getproducts=async()=>{
-            props.setLoader(true)
+            setLoader(true)
             const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`,{
                 params:{
                     limit:params.get("limit") || 9,
@@ -49,7 +49,7 @@ function ProductsPage({props}) {
             });
             setProds(res.data.Prods);
             setProdCnt(res.data.cnt);
-            props.setLoader(false)
+            setLoader(false)
         }
         getproducts();
 
@@ -57,46 +57,50 @@ function ProductsPage({props}) {
 
     
     return (
-        <div className="">
+        <>
             <Nav/>
-            <div className='max-w-screen flex'>
+            <div className='max-w-screen flex max-[969px]:flex-col max-[969px]:items-center'>
                 <div className='search-cont'>
-                    <h3>Filter:</h3>
-                    <form onSubmit={(e)=>{handleOnSubmit(e)}}>
-                        <input type="text" placeholder="Search" name="search" id="search" value={searchTerm} onChange={(e)=>{handleOnChange(e)}}/>
-                    </form>
-                    <div className='flex gap-2 items-center'>
-                        <p>Price:</p>
-                        <button onClick={()=>{
-                            getsearchres(searchTerm,false,true);
-                        }} className='btn1'>
-                            <box-icon name='down-arrow-alt'></box-icon>
-                        </button>
-                        <button onClick={()=>{
-                            getsearchres(searchTerm,true,true);
-                        }} className='btn1'>
-                            <box-icon name='up-arrow-alt'></box-icon>
-                        </button>
+                    <div className='flex flex-col gap-4'>
+                        <h3>Filter:</h3>
+                        <form onSubmit={(e)=>{handleOnSubmit(e)}}>
+                            <input type="text" placeholder="Search" name="search" id="search" value={searchTerm} onChange={(e)=>{handleOnChange(e)}}/>
+                        </form>
+                        <div className='flex gap-2 items-center'>
+                            <p>Price:</p>
+                            <button onClick={()=>{
+                                getsearchres(searchTerm,false,true);
+                            }} className='btn1'>
+                                <box-icon name='down-arrow-alt'></box-icon>
+                            </button>
+                            <button onClick={()=>{
+                                getsearchres(searchTerm,true,true);
+                            }} className='btn1'>
+                                <box-icon name='up-arrow-alt'></box-icon>
+                            </button>
+                        </div>
                     </div>
                     <button className='btn1' onClick={()=>{handleReset()}}>Reset Filters</button>
                 </div>
-                <div className='w-[80%] flex flex-col items-center'>
-                    <div className="products-container">
+                <div className='w-[80%] max-[1200px]:w-[70%] max-[969px]:w-full flex flex-col items-center mb-20'>
+                    <div className="products-container mb-4 sm:justify-between">
                         {products.map(item=>
                             <ProductItem productDetails={item} key={item._id} />
                         )}
                         {
-                            products.length===0 && !props.Loader && <h2>No Products Found</h2>
+                            products.length===0 && !Loader && <h2>No Products Found</h2>
                         }
                     </div>
-                    <div className='flex items-center'>
-                        <button className='btn1'  onClick={()=>{(page>1)?setPage(prev=>prev-1):""}} disabled={page==1?true:false}><box-icon name='chevron-left'></box-icon></button>
-                        {page}
-                        <button className='btn1'  onClick={()=>{(page<Math.ceil(prodCnt/Number(params.get("limit"))))?setPage(prev=>prev+1):""}} disabled={page==Math.ceil(prodCnt/Number(params.get("limit")))?true:false}><box-icon name='chevron-right'></box-icon></button>
-                    </div>
+                    {!Loader&&
+                        <div className='flex items-center bg-[#1a1a1a] rounded-[10px]'>
+                            <button className={`rounded-[10px] cursor-pointer px-4 py-2 flex items-center ${page==1?" bg-[#313131]":" bg-[#1a1a1a]"}`} onClick={()=>{(page>1)?setPage(prev=>prev-1):""}} ><box-icon name='chevron-left'></box-icon></button>
+                            <span className='px-4'>{page}</span>
+                            <button className={`rounded-[10px] cursor-pointer px-4 py-2 flex items-center ${page==Math.ceil(prodCnt/Number(params.get("limit")))?" bg-[#313131]":" bg-[#1a1a1a]"}`} onClick={()=>{(page<Math.ceil(prodCnt/Number(params.get("limit"))))?setPage(prev=>prev+1):""}}><box-icon name='chevron-right'></box-icon></button>
+                        </div>
+                    }
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
