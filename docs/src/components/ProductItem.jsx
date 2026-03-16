@@ -9,21 +9,27 @@ function ProductItem({productDetails}) {
     const [check,setCheck]=useState(false);
     const [item,setItem]=useState([]);
 
-    // const [Loader,setLoader]=useState(false);
-    const {Loader,cartItems,AddcartItem,UpdatecartItem,DeletecartItem}=useContext(CartContext);
+    const [Loader,setLoader]=useState(false);
+    const {cartItems,AddcartItem,UpdatecartItem,DeletecartItem}=useContext(CartContext);
 
     const handleClick=async()=>{
+        setLoader(true)
         await AddcartItem(productDetails);
+        setLoader(false)
     }
     const handleDec=async()=>{
+        setLoader(true)
         if (item.quantity===1){
             await DeletecartItem(_id);
         }else{
             await UpdatecartItem(_id,item.quantity-1);
         }
+        setLoader(false)
     }
     const handleInc=async()=>{
+        setLoader(true)
         await UpdatecartItem(_id,item.quantity+1)
+        setLoader(false)
     }
 
     useEffect(()=>{
