@@ -7,7 +7,7 @@ function Hero() {
         <>
             <div className='header-section'>
                 <div className="header-cont">
-                    <button onClick={()=>{navigate('/products/?limit=9&page=1')}}>Shop Now</button>
+                    <button className='btn1' onClick={()=>{navigate('/products/?limit=9&page=1')}}>Shop Now</button>
                     <h1>VLN PRODUCTS</h1>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+@import "tailwindcss";
 *{
   margin:0;
   padding:0;
@@ -25,7 +26,7 @@ a {
   text-decoration: none;
 }
 h1{
-  font-size: (2rem, 5vw, 4rem);
+  font-size: clamp(2rem, 5vw, 4rem);
 }
 body {
   margin: 0;
@@ -45,16 +46,16 @@ body {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  color:white;
 }
 .btn1:hover {
-  border-color: #646cff;
+  background-color: #2d2d2d;
 }
 .loader-cont{
-  position: absolute;
-  top:80px;
-  left:0;
-  right: 0;
-  bottom: 0;
+  position: fixed;
+  top:0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,6 +65,10 @@ body {
 .loader-cont span,
 .btn1 span{
   border-color: white white transparent!important;
+}
+
+box-icon{
+  fill:white;
 }
 
 @media (prefers-color-scheme: light) {

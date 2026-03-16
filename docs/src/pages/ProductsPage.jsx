@@ -3,17 +3,14 @@ import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import ProductItem from '../components/ProductItem';
 import '../styles/productspage.css'
-import { ClipLoader } from 'react-spinners';
 import Nav from '../components/Nav';
-import { useLocation } from 'react-router-dom';
-function ProductsPage() {
-
+function ProductsPage({props}) {
+    // const navigate=useNavigate();
     const [products,setProds]=useState([]);
-    const [Loader,setLoader]=useState(false);
     const [searchTerm,setSearchTerm]=useState('');
-    const location=useLocation();
-    const [page,setPage]=useState(1);
     const params=new URLSearchParams(location.search);
+    const [page,setPage]=useState(Number(params.get("page")));
+    const [prodCnt,setProdCnt]=useState(10);
 
     const getsearchres=async(value,srt,filter)=>{
         const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/search`,{
@@ -42,7 +39,7 @@ function ProductsPage() {
     }
     useEffect(()=>{
         const getproducts=async()=>{
-            setLoader(true)
+            props.setLoader(true)
             const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`,{
                 params:{
                     limit:params.get("limit") || 9,
@@ -50,8 +47,9 @@ function ProductsPage() {
                 }
                 ,withCredentials: true
             });
-            setProds(res.data);
-            setLoader(false)
+            setProds(res.data.Prods);
+            setProdCnt(res.data.cnt);
+            props.setLoader(false)
         }
         getproducts();
 
@@ -59,47 +57,46 @@ function ProductsPage() {
 
     
     return (
-        <>
+        <div className="">
             <Nav/>
-            <div className='main-prod-cont'>
+            <div className='max-w-screen flex'>
                 <div className='search-cont'>
+                    <h3>Filter:</h3>
                     <form onSubmit={(e)=>{handleOnSubmit(e)}}>
                         <input type="text" placeholder="Search" name="search" id="search" value={searchTerm} onChange={(e)=>{handleOnChange(e)}}/>
                     </form>
-                    <h3>Filter:</h3>
-                    <div className='d-flex'>
+                    <div className='flex gap-2 items-center'>
                         <p>Price:</p>
                         <button onClick={()=>{
                             getsearchres(searchTerm,false,true);
                         }} className='btn1'>
-                            <i className='bxr bx-arrow-down'></i>
+                            <box-icon name='down-arrow-alt'></box-icon>
                         </button>
                         <button onClick={()=>{
                             getsearchres(searchTerm,true,true);
                         }} className='btn1'>
-                            <i className='bxr bx-arrow-up'></i>
+                            <box-icon name='up-arrow-alt'></box-icon>
                         </button>
                     </div>
                     <button className='btn1' onClick={()=>{handleReset()}}>Reset Filters</button>
                 </div>
-                {Loader && 
-                <div className='loader-cont'>
-                    <ClipLoader/>
+                <div className='w-[80%] flex flex-col items-center'>
+                    <div className="products-container">
+                        {products.map(item=>
+                            <ProductItem productDetails={item} key={item._id} />
+                        )}
+                        {
+                            products.length===0 && !props.Loader && <h2>No Products Found</h2>
+                        }
+                    </div>
+                    <div className='flex items-center'>
+                        <button className='btn1'  onClick={()=>{(page>1)?setPage(prev=>prev-1):""}} disabled={page==1?true:false}><box-icon name='chevron-left'></box-icon></button>
+                        {page}
+                        <button className='btn1'  onClick={()=>{(page<Math.ceil(prodCnt/Number(params.get("limit"))))?setPage(prev=>prev+1):""}} disabled={page==Math.ceil(prodCnt/Number(params.get("limit")))?true:false}><box-icon name='chevron-right'></box-icon></button>
+                    </div>
                 </div>
-                }
-                <div className="products-container">
-                    {products.map(item=>
-                        <ProductItem productDetails={item} key={item._id} />
-                    )}
-                    {
-                        products.length===0 && !Loader && <h2>No Products Found</h2>
-                    }
-                </div>
-                    <button onClick={()=>{page>1?setPage(prev=>prev-1):""}}>{"<"}</button>
-                    {page}
-                    <button onClick={()=>{products.length>=params.get("limit")?setPage(prev=>prev+1):console.log(products.length)}}>{">"}</button>
             </div>
-        </>
+        </div>
     )
 }
 
