@@ -20,18 +20,19 @@
     max-height:4rem;
     border-radius: 6px;
 }
-.cartitem-details h1{
+/* .cartitem-details h1{
     font-size:clamp(0.875rem, 1vw, 1rem);
     color: var(--color-text-primary);
     font-weight: 600;
     margin: 0;
-}
+} */
 .cartitem-details p {
     color: var(--color-secondary);
     font-weight: 500;
     margin: 0.25rem 0 0 0;
 }
 .cartitem-details{
+    width: 80%;
     display:flex;
     gap:20px;
     align-items: center;
@@ -65,7 +66,13 @@
 .quant-wrapper button:hover {
     background-color: var(--color-primary-dark);
 }
+.cartitem-metadata{
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .cartitem-metadata h1{
-    width:100%;
+    white-space: nowrap;
+    overflow:hidden;
     text-overflow: ellipsis;
 }
