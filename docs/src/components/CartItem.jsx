@@ -28,7 +28,7 @@ function CartItem({cartDetails}) {
             <div className='cartitem-cont'>
                 <div className='cartitem-details'>
                     <img src={image} />
-                    <div>
+                    <div className='cartitem-metadata'>
                         <h1>{productname}</h1>
                         <p>₹{price}</p>
                     </div>
