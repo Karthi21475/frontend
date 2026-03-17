@@ -91,20 +91,8 @@ box-icon{
   transition: fill 0.2s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
 @media (max-width:969px){
   h1{
-    font-size: clamp(1rem, 2vw, 2rem);
+    font-size: clamp(2rem, 4vh, 4rem);
   }
 }

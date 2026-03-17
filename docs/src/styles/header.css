@@ -37,8 +37,3 @@
         transform: translateY(0);
     }
 }
-@media (orientation: portrait){
-    .header-section{
-        height:calc(50vh - 6rem);
-    }
-}
