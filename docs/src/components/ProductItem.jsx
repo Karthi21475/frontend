@@ -44,7 +44,7 @@ function ProductItem({productDetails}) {
             <div className="prod-info-wrapper">
                 <h1>{productname}</h1>
                 <p>₹{price}</p>
-                <div className='flex items-center justify-around bg-[#1a1a1a] text-white rounded-[10px] min-w-full'>
+                <div className='flex items-center justify-around bg-[#1A2636] text-white rounded-[10px] min-w-full'>
                 {Loader?
                     <div className="loader">
                         <ClipLoader/>

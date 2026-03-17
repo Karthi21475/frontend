@@ -8,26 +8,31 @@ function ProductsPage({props}) {
     // const navigate=useNavigate();
     const {Loader,setLoader}=props;
     const [products,setProds]=useState([]);
-    const [searchTerm,setSearchTerm]=useState('');
+    const [searchTerm,setSearchTerm]=useState("");
+    const [srt,setSrt]=useState(false);
+    const [asc,setAsc]=useState(false);
     const params=new URLSearchParams(location.search);
     const [page,setPage]=useState(Number(params.get("page")));
     const [prodCnt,setProdCnt]=useState(10);
 
-    const getsearchres=async(value,srt,filter)=>{
+    const getsearchres=async(value,srt,Asc)=>{
         setLoader(true)
         const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/search`,{
             params:{
                 searchTerm:value,
-                sortAsc:srt,
-                filter:filter
+                srt:srt,
+                Asc:Asc,
+                limit:params.get("limit") || 9,
+                page:page || 1
             }
         })
-        setProds(res.data)
+        setProds(res.data.Prods)
+        setProdCnt(res.data.cnt)
         setLoader(false)
     }
     const handleReset=()=>{
         setSearchTerm("")
-        getsearchres("",true,false);
+        getsearchres("",false,false);
     }
     const handleOnChange=async(e)=>{
         const value=e.target.value
@@ -35,25 +40,12 @@ function ProductsPage({props}) {
     }
     const handleOnSubmit=async(e)=>{
         e.preventDefault();
-        getsearchres(searchTerm,true,false);
+        setPage(1);
+        getsearchres(searchTerm,srt,asc);
     }
     useEffect(()=>{
-        const getproducts=async()=>{
-            setLoader(true)
-            const res=await axios.get(`${import.meta.env.VITE_API_URL}/api/products`,{
-                params:{
-                    limit:params.get("limit") || 9,
-                    page:page || 1
-                }
-                ,withCredentials: true
-            });
-            setProds(res.data.Prods);
-            setProdCnt(res.data.cnt);
-            setLoader(false)
-        }
-        getproducts();
-
-    },[page]);
+        getsearchres(searchTerm,srt,asc);
+    },[page,srt,asc]);
 
     
     return (
@@ -69,12 +61,32 @@ function ProductsPage({props}) {
                         <div className='flex gap-2 items-center'>
                             <p>Price:</p>
                             <button onClick={()=>{
-                                getsearchres(searchTerm,false,true);
+                                if(srt){
+                                    if(!asc){
+                                        setSrt(false)
+                                    }else{
+                                        setAsc(false)
+                                    }
+                                }else{
+                                    setAsc(false)
+                                    setSrt(true)
+                                }
+                                setPage(1);
                             }} className='btn1'>
                                 <box-icon name='down-arrow-alt'></box-icon>
                             </button>
                             <button onClick={()=>{
-                                getsearchres(searchTerm,true,true);
+                                if(srt){
+                                    if(asc){
+                                        setSrt(false)
+                                    }else{
+                                        setAsc(true)
+                                    }
+                                }else{
+                                    setAsc(true)
+                                    setSrt(true)
+                                }
+                                setPage(1);
                             }} className='btn1'>
                                 <box-icon name='up-arrow-alt'></box-icon>
                             </button>
@@ -92,10 +104,10 @@ function ProductsPage({props}) {
                         }
                     </div>
                     {!Loader&&
-                        <div className='flex items-center bg-[#1a1a1a] rounded-[10px]'>
-                            <button className={`rounded-[10px] cursor-pointer px-4 py-2 flex items-center ${page==1?" bg-[#313131]":" bg-[#1a1a1a]"}`} onClick={()=>{(page>1)?setPage(prev=>prev-1):""}} ><box-icon name='chevron-left'></box-icon></button>
+                        <div className='flex items-center bg-[#1A2636] rounded-[10px]'>
+                            <button className="rounded-[10px] cursor-pointer px-4 py-2 flex items-center bg-[#1A2636]" onClick={()=>{(page>1)?setPage(prev=>prev-1):""}} ><box-icon name='chevron-left' className={`${page==1?"fill-gray-700":"fill-[white]"}`}></box-icon></button>
                             <span className='px-4'>{page}</span>
-                            <button className={`rounded-[10px] cursor-pointer px-4 py-2 flex items-center ${page==Math.ceil(prodCnt/Number(params.get("limit")))?" bg-[#313131]":" bg-[#1a1a1a]"}`} onClick={()=>{(page<Math.ceil(prodCnt/Number(params.get("limit"))))?setPage(prev=>prev+1):""}}><box-icon name='chevron-right'></box-icon></button>
+                            <button className="rounded-[10px] cursor-pointer px-4 py-2 flex items-center bg-[#1A2636]" onClick={()=>{(page<Math.ceil(prodCnt/Number(params.get("limit"))))?setPage(prev=>prev+1):""}}><box-icon name='chevron-right' className={`${page==Math.ceil(prodCnt/Number(params.get("limit")))?"fill-gray-700":"fill-[white]"}`}></box-icon></button>
                         </div>
                     }
                 </div>

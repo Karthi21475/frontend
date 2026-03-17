@@ -8,8 +8,30 @@
 
 :root {
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+
+  /* Color Palette - Amazon-Inspired */
+  --color-primary: #FF9900;
+  --color-primary-dark: #E68A00;
+  --color-primary-light: #FFB340;
+  --color-secondary: #2BBFC2;
+  --color-secondary-dark: #007185;
+  --color-secondary-light: #5DD8DE;
+  --color-nav: #232F3E;
+
+  /* Backgrounds */
+  --color-bg-dark: #131921;
+  --color-bg-card: #1A2636;
+  --color-bg-hover: #243044;
+
+  /* Text */
+  --color-text-primary: #F3F3F3;
+  --color-text-secondary: #8D9096;
+
+  /* Borders */
+  --color-border: #3B4553;
+
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-dark);
 }
 
 a {
@@ -33,19 +55,19 @@ body {
   padding: 0.6em 1.2em;
   height:38px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.1;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-primary);
   cursor: pointer;
-  transition: border-color 0.25s;
-  color:white;
+  transition: all 0.2s ease;
+  color: #131921;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .btn1:hover {
-  background-color: #2d2d2d;
+  background-color: var(--color-primary-light);
 }
 .loader-cont{
   position: fixed;
@@ -55,7 +77,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #242424;
+  background-color: var(--color-bg-dark);
   z-index: 998;
 }
 .loader-cont span,
@@ -65,7 +87,8 @@ body {
 }
 
 box-icon{
-  fill:white;
+  /* fill: var(--color-text-secondary); */
+  transition: fill 0.2s ease;
 }
 
 @media (prefers-color-scheme: light) {
