@@ -34,9 +34,9 @@ function Nav() {
     <>
         <nav className="nav-container">
             <h1 className="logo">VLN</h1>
-            <div className='ham min-[750px]:hidden' onClick={()=>setShow(prev=>!prev)}><i className='bx bx-menu'></i></div>
-            <div className={`drop-down min-[750px]:flex ${show?"max-[750px]:flex":"max-[750px]:hidden"}`}>
-                <div className='ms-auto min-[750px]:hidden'>
+            <div className='ham max-[750px]:flex min-[751px]:hidden' onClick={()=>setShow(prev=>!prev)}><i className='bx bx-menu'></i></div>
+            <div className={`drop-down min-[751px]:flex ${show?"max-[750px]:flex":"max-[751px]:hidden"}`}>
+                <div className='ms-auto min-[751px]:hidden'>
                     <i className='bx bx-x' onClick={()=>setShow(prev=>!prev)}></i>
                 </div>
                 <ul className="nav-links">
